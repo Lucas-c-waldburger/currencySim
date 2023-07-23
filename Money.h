@@ -8,16 +8,16 @@
 class Money : public Currency
 {
 public:
-    Money(int wholeVal, int fractionVal, std::string noteNm, std::string coinNm);
-    Money(std::string& decimalInput, std::string& noteNm, std::string& coinNm);
-
-    ~Money() = default;
+    Money(int wholeVal, int fractionVal, std::string  noteNm, std::string  coinNm);
+    Money(const std::string& decimalInput, const std::string& noteNm, const std::string& coinNm);
+    Money(const Money& other);
+    ~Money() override = default;
 
     void add(Currency& other) override;
     void subtract(Currency& other) override;
 
-    bool isEqual(Currency& other) override;
-    bool isLarger(Currency& other) override;
+    bool isEqual(const Currency& other) override;
+    bool isLarger(const Currency& other) override;
 
     void print() override;
 

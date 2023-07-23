@@ -55,19 +55,21 @@ void Currency::convertTotal(int raw)
     fractional = raw % 100;
 }
 
-Currency::Currency(std::string& decimalInput)
+Currency::Currency(const std::string& decimalInput)
 {
-    std::string exceptionWhat = "The entry '" + decimalInput + "' is improperly formatted";
-    size_t decimalPos = decimalInput.find('.');
+    std::string modifiableDecimal = decimalInput;
+
+    std::string exceptionWhat = "The entry '" + modifiableDecimal + "' is improperly formatted";
+    size_t decimalPos = modifiableDecimal.find('.');
 
     if (decimalPos == std::string::npos)
         throw std::invalid_argument(exceptionWhat);
 
-    whole = std::stoi(decimalInput.substr(0, decimalPos));
+    whole = std::stoi(modifiableDecimal.substr(0, decimalPos));
 
-    decimalInput.erase(0, decimalPos + 1);
-    if (decimalInput.length() != 2)
+    modifiableDecimal.erase(0, decimalPos + 1);
+    if (modifiableDecimal.length() != 2)
         throw std::invalid_argument(exceptionWhat);
 
-    fractional = std::stoi(decimalInput);
+    fractional = std::stoi(modifiableDecimal);
 }

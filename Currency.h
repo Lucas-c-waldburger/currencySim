@@ -11,7 +11,7 @@ class Currency
 public:
     Currency();
     Currency(int wholeVal, int fractionVal);
-    explicit Currency(std::string& decimalInput);
+    explicit Currency(const std::string& decimalInput);
     virtual ~Currency() = default;
 
     Currency(const Currency& other);
@@ -28,8 +28,8 @@ public:
     virtual void add(Currency& other) = 0;
     virtual void subtract(Currency& other) = 0;
 
-    virtual bool isEqual(Currency& other) = 0;
-    virtual bool isLarger(Currency& other) = 0;
+    virtual bool isEqual(const Currency& other) = 0;
+    virtual bool isLarger(const Currency& other) = 0;
 
     virtual void print() = 0;
 
